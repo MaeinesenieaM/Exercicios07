@@ -6,14 +6,12 @@ int main ()
 {
 	int saida = 0;  //usado para determinar a saída do programa.
 	int ERR = 0;    //ERROR | usado quando algum valor incorreto for inserído.
-	int mouse; //valor usado para determinar a escolha do usuário.
+	
+	//valor usado para determinar a escolha do usuário.	
+	int mouse;
+	char mouse_letra;
 
-
-	int sexo_masculino = 0, sexo_feminino = 0;
-	int olho_azul = 0, olho_verde = 0, olho_castanho = 0, olhos_preto = 0;
-	int cabelo_loiro = 0, cabelo_castanho = 0, cabelo_preto = 0, cabelo_ruivo = 0;
-	int idade, idade_jovem = 0, idade_adulto_jovem = 0, idade_adulto_meia = 0, idade_idoso = 0;
-	int salario;
+	float salario;
 
 	int usuarios = 0;
 	int usuarios_selecionados = 0;
@@ -23,17 +21,22 @@ int main ()
 	printf ("===||Cadastro de cidadão||===\n\n");
 	do
 	{
+		int sexo_masculino = 0, sexo_feminino = 0;
+		int olho_azul = 0, olho_verde = 0, olho_castanho = 0, olhos_preto = 0;
+		int cabelo_loiro = 0, cabelo_castanho = 0, cabelo_preto = 0, cabelo_ruivo = 0;
+		int idade, idade_jovem = 0, idade_adulto_jovem = 0, idade_adulto_meia = 0, idade_idoso = 0;
+
 		printf("##Por favor, digite suas informações ao que é pedido!##\n");
 		do
 		{
 			ERR = 0;
-			printf ("\nInsire seus anos de vida.\n =|> "); 
+			printf ("\nInsire seus anos de vida.\n =|> ");
 			scanf ("%d", &idade);
 			
 			if (idade == -1) {saida = 1;}
 			else if (idade < 10 || idade > 100)
 			{
-				printf ("\n!!!IDADE INVÁLIDA TENTE NOVAMENTE!!!\n\n");
+				printf ("\n!!!IDADE INVÁLIDA TENTE NOVAMENTE!!!\n");
 				ERR = 1;
 			}
 			else if (idade <= 17)   {idade_jovem++;}		  //Idade entre 10 a 17.
@@ -41,80 +44,87 @@ int main ()
 			else if (idade <= 59)   {idade_adulto_meia++;}  //Idade entre 35 a 59.
 			else if (idade <= 100)  {idade_idoso++;}		  //Idade entre 60 a 100.
 
+			
+
 		} while (ERR != 0); //Loop caso houve algum erro.
 
 		if (saida != 0) {break;}
 
+		fflush(stdin); // limpa a memoria guardada pelo teclado.
+
 		do
 		{
 			ERR = 0;
-			printf ("\nInsire o seu Sexo.\n Masculino: 1\n Feminino: 2\n =|> "); scanf ("%d", &mouse);
-			switch (mouse)
+			printf ("\nInsire o seu Sexo.\n Masculino: m\n Feminino: f\n =|> "); scanf ("%c", &mouse_letra);
+			switch (mouse_letra)
 			{
-				case 1:
+				case 'm':case 'M':
 					sexo_masculino++;
 					break;
-				case 2:
+				case 'f':case 'F':
 					sexo_feminino++;
 					break;
 				default:
-					printf ("\n!!!VALOR INVÁLIDO TENTE NOVAMENTE!!!\n\n");
+					printf ("\n!!!VALOR INVÁLIDO TENTE NOVAMENTE!!!\n");
 					ERR = 1;
 			}
+			fflush(stdin);
 		} while (ERR != 0);
 
 		do
 		{
 			ERR = 0;
-			printf ("\nInsire a cor dos seus Olhos.\n Azul: 1\n Verde: 2\n Castanho: 3\n Preto: 4\n =|> "); scanf ("%d", &mouse);
-			switch (mouse)
+			printf ("\nInsire a cor dos seus Olhos.\n Azul: a\n Verde: v\n Castanho: c\n Preto: p\n =|> "); scanf ("%c", &mouse_letra);
+			switch (mouse_letra)
 			{
-				case 1:
+				case 'a':case 'A':
 					olho_azul++;
 					break;
-				case 2:
+				case 'v':case 'V':
 					olho_verde++;
 					break;
-				case 3:
+				case 'c':case 'C':
 					olho_castanho++;
 					break;
-				case 4:
+				case 'p':case 'P':
 					olhos_preto++;
 					break;
 				default:
-					printf ("\n!!!VALOR INVÁLIDO TENTE NOVAMENTE!!!\n\n");
+					printf ("\n!!!VALOR INVÁLIDO TENTE NOVAMENTE!!!\n");
 					ERR = 1;
 			}
+			fflush(stdin);
 		} while (ERR != 0);
 
 		do
 		{
 			ERR = 0;
-			printf ("\nInsira a cor do seu Cabelo.\n Loiro: 1\n Castanho: 2\n Perto: 3\n Ruivo: 4\n =|> "); scanf ("%d", &mouse);
-			switch (mouse)
+			printf ("\nInsira a cor do seu Cabelo.\n Loiro: l\n Castanho: c\n Preto: p\n Ruivo: r\n =|> "); scanf ("%c", &mouse_letra);
+			switch (mouse_letra)
 			{
-				case 1:
+				case 'l':case 'L':
 					cabelo_loiro++;
 					break;
-				case 2:
+				case 'c':case 'C':
 					cabelo_castanho++;
 					break;
-				case 3:
+				case 'p':case 'P':
 					cabelo_preto++;
 					break;
-				case 4:
+				case 'r':case 'R':
 					cabelo_ruivo++;
 					break;
 				default:
 					printf ("\n!!!VALOR INVÁLIDO TENTE NOVAMENTE!!!\n\n");
 					ERR = 1;
 			}
+			fflush(stdin);
 		} while (ERR != 0);
 
 		do
 		{
 			ERR = 0;
-			printf ("\nInsira o seu salário atual. \n =|> "); scanf ("%d", &salario);
+			printf ("\nInsira o seu salário atual. \n =|> "); scanf ("%f", &salario);
 			if (salario < 0)
 			{
 				printf ("\n!!!SALÁRIO INVÁLIDO || NÃO SÃO ACEITOS VALORES NEGATIVOS!!!\n\n");
@@ -123,7 +133,10 @@ int main ()
 			
 		} while (ERR != 0);
 
-		usuarios++; //Finalmente acrescenta o número do usuário.
+		//Finalmente acrescenta o número do usuário.		
+		usuarios++; 
+		//Checa se o usuario tem as características pedidas.
+		if (idade_adulto_jovem > 0 && sexo_feminino > 0 && olho_castanho > 0 && cabelo_castanho > 0) {usuarios_selecionados++;}
 		printf ("\nCadastro %d finalizado!\n\n", usuarios);
 
 
@@ -134,17 +147,16 @@ int main ()
 		printf ("\n!!!DATA INSUFICIENTE || NÃO A USUARIOS CADASTRADOS!!!\n\n");
 		exit (0);
 	}
-
-	//Contagem dos usuários específicados.
+	/*
 	while (idade_adulto_jovem > 0 && sexo_feminino > 0 && olho_castanho > 0 && cabelo_castanho > 0)
 	{
 			idade_adulto_jovem--;
-			sexo_feminino--;
-			olho_castanho--;
+			sexo_feminino--;				este codigo fazia parte de uma logica quebrada e invalida.
+			olho_castanho--;				NÃO REPITA OQ EU FIZ AKI!!
 			cabelo_castanho--;
 			usuarios_selecionados++;
 	}
-
+	*/
 	float porcentagem_selecionados = (usuarios_selecionados * 100) / usuarios; //Calculo de razão.
 	printf ("\nCadastros finalizados!\n\nPorcentagem de Usuários específicados: %.2f%%", porcentagem_selecionados);
 
