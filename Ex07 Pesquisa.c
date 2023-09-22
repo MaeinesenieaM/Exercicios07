@@ -41,7 +41,7 @@ int main ()
 			else if (idade <= 59)   {idade_adulto_meia++;}  //Idade entre 35 a 59.
 			else if (idade <= 100)  {idade_idoso++;}		  //Idade entre 60 a 100.
 
-		} while (ERR != 0);
+		} while (ERR != 0); //Loop caso houve algum erro.
 
 		if (saida != 0) {break;}
 
@@ -135,6 +135,7 @@ int main ()
 		exit (0);
 	}
 
+	//Contagem dos usuários específicados.
 	while (idade_adulto_jovem > 0 && sexo_feminino > 0 && olho_castanho > 0 && cabelo_castanho > 0)
 	{
 			idade_adulto_jovem--;
@@ -144,7 +145,7 @@ int main ()
 			usuarios_selecionados++;
 	}
 
-	float porcentagem_selecionados = (usuarios_selecionados * 100) / usuarios;
+	float porcentagem_selecionados = (usuarios_selecionados * 100) / usuarios; //Calculo de razão.
 	printf ("\nCadastros finalizados!\n\nPorcentagem de Usuários específicados: %.2f%%", porcentagem_selecionados);
 
 	printf ("\n\n    __o  bici! \n  _/><_ \n (_)/(_) \n  ");
